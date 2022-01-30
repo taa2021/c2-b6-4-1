@@ -1,0 +1,22 @@
+---
+# Установка и запуск службы запуска docker-а
+
+- hosts: localhost # имя группы хостов, на которой будет запущен плейбук
+  gather_facts: yes # параметр, предписывающий ansible собирать факты
+  tasks:
+    - name: Install docker containerd
+      become: true
+      ansible.builtin.package:
+        name: containerd
+        state: present
+
+#    - name: Enable service docker containerd
+#      ansible.builtin.service:
+#        name: containerd
+#        enabled: yes
+
+    - name: Start service docker containerd, if not started
+      become: true
+      ansible.builtin.service:
+        name: containerd
+        state: started

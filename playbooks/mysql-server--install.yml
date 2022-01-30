@@ -1,0 +1,17 @@
+---
+# Установка службы mysql-server
+
+- hosts: localhost # имя группы хостов, на которой будет запущен плейбук
+  gather_facts: yes # параметр, предписывающий ansible собирать факты
+  tasks:
+    - name: Install mysql server
+      become: true
+      ansible.builtin.package:
+        name: mysql-server
+        state: present
+
+#    - name: Enable service mysql-server
+#      become: true
+#      ansible.builtin.service:
+#        name: mysql
+#        enabled: yes

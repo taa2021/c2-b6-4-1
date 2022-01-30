@@ -1,0 +1,11 @@
+---
+# Запуск службы mysql-server
+
+- hosts: localhost # имя группы хостов, на которой будет запущен плейбук
+  gather_facts: yes # параметр, предписывающий ansible собирать факты
+  tasks:
+    - name: Start service mysql-server, if not started
+      become: true
+      ansible.builtin.service:
+        name: mysql
+        state: started
